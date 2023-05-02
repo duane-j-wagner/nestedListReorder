@@ -1,0 +1,42 @@
+<ng-container *ngIf="!isArray(message)">
+  <ion-item
+    *ngIf="message"
+    [routerLink]="'/message/' + getMessage(message).id"
+    [detail]="false"
+  >
+    <div slot="start" [class]="!getMessage(message).read ? 'dot dot-unread' : 'dot'"></div>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        {{ getMessage(message).fromName }}
+        <span class="date">
+          <ion-note>{{ getMessage(message).date }}</ion-note>
+          <ion-icon
+            aria-hidden="true"
+            name="chevron-forward"
+            size="small"
+            *ngIf="isIos()"
+          ></ion-icon>
+        </span>
+      </h2>
+      <h3>{{ getMessage(message).subject }}</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco est laborum.
+      </p>
+    </ion-label>
+    <ng-content></ng-content>
+  </ion-item>
+</ng-container>
+<ng-container *ngIf="isArray(message)">
+  <ion-list>
+    <app-message
+      slot="content"
+      *ngFor="let m of getMessageArray(message)"
+      [message]="m"
+    >
+      <ion-reorder slot="end"></ion-reorder>
+    </app-message>
+  </ion-list>
+
+</ng-container>

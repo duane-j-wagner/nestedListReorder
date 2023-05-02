@@ -1,0 +1,7 @@
+{
+  "name": "expander",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
